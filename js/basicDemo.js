@@ -49,9 +49,3 @@ function createDemoConfigurator(options) {
 
   return configurator;
 }
-
-/**
-
-  1. Update this.toGridEase and toFullEase
-  2. options.duration
- */

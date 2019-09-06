@@ -1049,23 +1049,14 @@ class Configurator {
   getQueryOptionsOrLastValidDraft(options) {
     // Check if there are URL settings
     let replacementSettings = this.getURLQuerySettings();
-    // Check for local storage settings
-    if (replacementSettings == null) {
-      const lastDraftID = this.storageEffects.idList.drafts[0];
-      if (lastDraftID) {
-        const draftEffect = this.getStorageEffect(lastDraftID);
-        if (draftEffect != null) {
-          replacementSettings = draftEffect;
-          this.effectID = lastDraftID;
-        }
-      }
-    }
-    replacementSettings = replacementSettings || {};
-    // If there are any settings to saved. Use them.
-    let useDefault =
-      Object.keys(replacementSettings).length === 1 &&
-      replacementSettings.default;
-    if (replacementSettings != null && !useDefault) {
+
+    if (
+      replacementSettings != null &&
+      !(
+        Object.keys(replacementSettings).length === 1 &&
+        replacementSettings.default
+      )
+    ) {
       let validOptions = [
         "activation",
         "timing",
