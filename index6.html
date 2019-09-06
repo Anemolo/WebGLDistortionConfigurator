@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Configurator for Creating Custom WebGL Distortion Effects | Preset 6 | Codrops</title>
+		<meta name="description" content="A configurator for creating unique fullscreen image animations with WebGL distortion effects powered by Three.js." />
+		<meta name="keywords" content="configurator, animation, grid, fullscreen, liquid, effect, webgl, ripples, distortion, three.js" />
+		<meta name="author" content="Daniel Velasquez for Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script><script src="//tympanus.net/codrops/adpacks/analytics.js"></script>
+	</head>
+	<body class="loading cda-naked cda-noimg cda-removeleft  demo-6">
+		<main>
+			<div class="frame">
+				<div class="frame__title-wrap">
+					<h1 class="frame__title">Configurator for Creating Custom WebGL Distortion Effects</h1>
+					<p class="frame__tagline">Click the image</a></p>
+				</div>
+				<div class="frame__links">
+					<!--a href="">GitHub</a-->
+					<a href="https://tympanus.net/Development/ImageTrailEffects/">Previous Demo</a>
+					<a href="https://tympanus.net/codrops/?p=40753">Article</a>
+				</div>
+				<div class="frame__demos">
+					<a href="index.html?default=true" class="frame__demo">preset 1</a>
+					<a href="index2.html?default=true" class="frame__demo">preset 2</a>
+					<a href="index3.html?default=true" class="frame__demo">preset 3</a>
+					<a href="index4.html?default=true" class="frame__demo">preset 4</a>
+					<a href="index5.html?default=true" class="frame__demo">preset 5</a>
+					<a href="index6.html?default=true" class="frame__demo frame__demo--current">preset 6</a>
+				</div>
+			</div>
+		<div id="app"></div>
+			<div class="content" id="items-wrap">
+				<div class="item">
+					<img class="content__img" src="img/6.jpg" alt="An image" />
+					<img class="content__img content__img--large" src="img/6_large.jpg" alt="An image" />
+				</div>
+			</div>
+		</main>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/three.min.js"></script>
+		<script src="js/TweenLite.min.js"></script>
+		<script src="js/CSSPlugin.min.js"></script>
+		<script src="js/EasePack.min.js"></script>
+		<script src="js/dat-gui.min.js"></script>
+		<script src="js/Configurator.js"></script>
+		<script src="js/GridToFullscreenEffect.js"></script>
+		<script src="js/basicDemo.js"></script>
+		<script>
+			const itemsWrapper = document.getElementById('items-wrap');
+
+			const configurator = createDemoConfigurator({
+				duration: 2.,
+				timing: {
+					type: "sections",
+				},
+				easings: {
+					toFullscreen: Power4.easeOut,
+					toGrid: Power4.easeOut
+				},
+				activation: {
+					type: "radial", props: {onMouse: true}
+				},
+				transformation: {
+					type: "wavy",
+					props: {
+						seed: "8000",
+						frequency: 0.1,
+						amplitude: 1
+					}
+				}	
+			})
+		imagesLoaded(document.querySelectorAll("img"), instance => {
+
+			//https://www.techrepublic.com/article/preloading-and-the-javascript-image-object/
+			document.body.classList.remove("loading");
+			let images = [];
+				for (var i = 0, imageSet = {}; i < instance.elements.length; i++) {
+					let image = {
+						element: instance.elements[i],
+						image: instance.images[i].isLoaded ? instance.images[i].img : null
+					};
+					if (i % 2 === 0) {
+						imageSet = {};
+						imageSet.small = image;
+					}
+
+					if (i % 2 === 1) {
+						imageSet.large = image;
+						images.push(imageSet);
+					}
+				}
+				configurator.effect.createTextures(images);
+			});
+		
+		</script>
+	<script src="https://tympanus.net/codrops/adpacks/demoad.js"></script></body>
+</html>
