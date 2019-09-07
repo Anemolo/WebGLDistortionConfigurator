@@ -1,8 +1,8 @@
-# WebGL Distortion Configurator
+# Configurator for Creating Custom WebGL Distortion Effects
 
-A configurator for creating your own grid-to-fullscreen distortions. Made for "A Configurator for Creating Custom Grid to Fullscreen Animations" by Daniel Velasquez.
+A configurator for creating unique fullscreen image animations with WebGL distortion effects powered by Three.js. By Daniel Velasquez.
 
-![Grid to Fullscreen Configurator](./configurator_featured.jpg)
+![Fullscreen image animation configurator](./configurator_featured.jpg)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=40753)
 
